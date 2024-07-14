@@ -2,13 +2,14 @@ package hammurabi;
 
 import static org.junit.Assert.*;
 
+import docs.Hammurabi;
 import org.junit.Before;
 import org.junit.Test;
 
-public class HammurabiTest {
-    
-    Hammurabi ham;
-    
+public class MyHammurabiTest {
+
+    Hammurabi ham = new Hammurabi();
+
     boolean about(double expected, double actual) {
         return actual > 0.90 * expected && actual < 1.10 * expected;
     }
@@ -46,7 +47,7 @@ public class HammurabiTest {
     @Test
     public final void testStarvationDeaths() {
         int deaths = ham.starvationDeaths(100, 1639);
-        assertEquals("Wrong number of starvations deaths.", 19, deaths);
+        assertEquals("Wrong number of starvation deaths.", 19, deaths);
         deaths = ham.starvationDeaths(100, 2500);
         if (deaths < 0) {
             fail("You starved a negative number of people!");
@@ -88,13 +89,13 @@ public class HammurabiTest {
             }
         }
         int percentInfestations = infestations / 100;
-        assertTrue("Number of rat infestations is about " + percentInfestations + 
+        assertTrue("Number of rat infestations is about " + percentInfestations +
                    ", not about 40%.", about(400, infestations));
     }
 
     @Test
     public final void testGrainEatenByRats2() {
-        int percent = 0;
+        int percent;
         int[] counts = new int[31];
         for (int i = 0; i < 10000; i++) {
             percent = ham.grainEatenByRats(100);
