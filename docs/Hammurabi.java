@@ -237,5 +237,4 @@ import java.util.Random;
 			return landValue;
 		}
 
-
 	}
