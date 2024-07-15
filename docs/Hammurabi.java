@@ -10,6 +10,7 @@ import java.util.Random;
 		public int acresOwned = 1000;
 		public int landValue = 3;
 		public boolean gameOn = true;
+		public String name = "Hammurabi";
 
 
 		Scanner scanner = new Scanner(System.in);
@@ -28,30 +29,24 @@ import java.util.Random;
 			int yearsBounty = 19;
 			while (gameOn == true) {
 				if(year <10) {
+					if (year ==1){
+						this.name = rulerName();
+					}
 					System.out.println("               T~~\n" +
 							"               |\n" +
 							"              /\"\\\n" +
 							"      T~~     |'| T~~\n" +
 							"  T~~ |    T~ WWWW|\n" +
 							"  |  /\"\\   |  |  |/\\T~~\n" +
-							" /\"\\ WWW  /\"\\ |' |WW|		How's it going, Hammurabi? \n" +
+							" /\"\\ WWW  /\"\\ |' |WW|		How's it going, " + this.name + "? \n" +
 							"WWWWW/\\| /   \\|'/\\|/\"\\		You are in year " + year + " of your ten year rule.\n" +
 							"|   /__\\/]WWW[\\/__\\WWWW		In the previous year " + starvedFolks +" people starved to death.\n" +
 							"|\"  WWWW'|I_I|'WWWW'  |		In the previous year " + immigrantsGained + " people entered the kingdom.\n" +
 							"|   |' |/  -  \\|' |'  |		The population is now "+ people + ". \n" +
-							"|'  |  |LI=H=LI|' |   |		We harvested "+ seedsPlanted + " bushels at " + yearsBounty + " bushels per acre. \n" +
+							"|'  |  |LI=H=LI|' |   |		We harvested "+ yearsBounty + " bushels at " + seedsPlanted + " bushels per acre. \n" +
 							"|   |' | |[_]| |  |'  |		Rats destroyed "+ ratDamage +" bushels, leaving " + bushels + " bushels in storage.\n" +
 							"|   |  |_|###|_|  |   |		The city owns "+ acresOwned + " acres of land.\n" +
 							"'---'--'-/___\\-'--'---'		Land is currently worth " + landValue + " bushels per acre.");
-//							"\n How's it going, Hammurabi?\n" +
-//							"You are in year " + year + " of your ten year rule.\n" +
-//							"In the previous year " + starvedFolks +" people starved to death.\n" +
-//							"In the previous year " + immigrantsGained + " people entered the kingdom.\n" +
-//							"The population is now "+ people + ".\n" +
-//							"We harvested "+ seedsPlanted + " bushels at " + landValue + " bushels per acre.\n" +
-//							"Rats destroyed "+ ratDamage +" bushels, leaving " + bushels + " bushels in storage.\n" +
-//							"The city owns "+ acresOwned + " acres of land.\n" +
-//							"Land is currently worth " + landValue + " bushels per acre.\n");
 				}
 				if (howManyAcresToBuy(landValue, bushels) == 0){
 					askHowManyAcresTosell(acresOwned);
@@ -86,13 +81,13 @@ import java.util.Random;
 			}
 			scanner.close();
 			if (year < 10 && this.gameOn == false){
-				System.out.println("Wow Hammurabi, you really blew it this time, the remaining followers have \n" +
+				System.out.println("Wow " + name + ", you really blew it this time, the remaining followers have \n" +
 						"collectively concluded youre not fit to rule anything more than the stone" +
 						" thrown at you");
 			} else if (year == 10){
 				System.out.println("(\uD83D\uDC4D ͡❛ ͜ʖ ͡❛)\uD83D\uDC4D" +
 									"You win!");
-			} else System.out.println("Wow Hammurabi, you really blew it this time, the remaining followers have \n" +
+			} else System.out.println("Wow "+ name +", you really blew it this time, the remaining followers have \n" +
 					"collectively concluded youre not fit to rule anything more than the stone" +
 					" thrown at you");
 		}
@@ -133,7 +128,7 @@ import java.util.Random;
 			if(userInput <= bushels){
 				this.bushels -= userInput;
 			}else if (userInput < 100){
-				System.out.println("Awfully stingy this year, Hammurabi");
+				System.out.println("Awfully stingy this year...");
 				return 0;
 			}
 			else {
@@ -190,7 +185,7 @@ import java.util.Random;
 
 			double populationNumber = (double) population *.45;
 			if(howManyPeopleStarved > populationNumber){
-				System.out.println("Wow Hammurabi, the people have come together to overthrow your ruling! ");
+				System.out.println("Wow " + name +", the people have come together to overthrow your ruling! ");
 				this.gameOn = false;
 				return true;
 			}
@@ -235,6 +230,20 @@ import java.util.Random;
 			this.landValue = random.nextInt(7)+17;
 
 			return landValue;
+		}
+
+		public String rulerName(){
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("Congrats!! You're the new ruler, what was your name again?");
+			String newName = scanner.nextLine();
+			if (newName.equals("") || newName.equals(" ")){
+				System.out.println("That is not a funky enough name for a True Ruler, try again");
+				return rulerName();
+			} else {
+				name = newName;
+				return newName;
+			}
+
 		}
 
 	}
