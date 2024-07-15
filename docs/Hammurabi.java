@@ -1,7 +1,5 @@
 package docs;
-
 import java.util.Scanner;
-
 import java.util.Random;
 
 	public class Hammurabi {
@@ -11,8 +9,6 @@ import java.util.Random;
 		public int landValue = 3;
 		public boolean gameOn = true;
 		public String name = "Hammurabi";
-
-
 		Scanner scanner = new Scanner(System.in);
 
 		public static void main(String[] args) { // required in every Java program
@@ -25,10 +21,10 @@ import java.util.Random;
 			int seedsPlanted = 3000;
 			int year = 1;
 			int ratDamage = 200;
-			int bushelsToFeed =0;
+			int bushelsToFeed;
 			int yearsBounty = 19;
 			while (gameOn == true) {
-				if(year <10) {
+				if(year <=10) {
 					if (year ==1){
 						this.name = rulerName();
 					}
@@ -98,6 +94,7 @@ import java.util.Random;
 			price *= userInput;
 			if (bushels >= price) {
 				this.bushels -= price;
+				acresOwned += userInput;
 			}
 			else {
 				System.out.println("You fool, you only have " + this.bushels + " bushels remaining, try again!");
